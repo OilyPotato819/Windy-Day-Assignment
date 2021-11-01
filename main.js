@@ -11,6 +11,8 @@ let cloudImg = document.getElementById("cloud");
 
 let cloud1x = 130;
 let cloud1y = 120;
+let cloud2x = 170;
+let cloud2y = 100;
 
 // Animation Loop
 requestAnimationFrame(animate);
@@ -18,14 +20,19 @@ requestAnimationFrame(animate);
 function animate() {
     // UPDATE
     // Animate cloud 1
-    cloud1x--; // Move left
+    cloud1x++; // Move right
+    // Animate cloud 2
+    cloud2x++; // Move right
 
-    // If cloud goes off left side of canvas, teleport to right side at random height
-    if (cloud1x + 100 < 0) {
-        cloud1x = cnv.width;
+    // If cloud goes off right side of canvas, teleport to left side at random height
+    if (cloud1x > 400) {
+        cloud1x = -100;
         cloud1y = Math.random() * 200;
     }
-
+    if (cloud2x > 400) {
+        cloud2x = -100;
+        cloud2y = Math.random() * 200;
+    }
 
     // DRAW
     // Blue Background
@@ -38,7 +45,7 @@ function animate() {
 
     // Draw Clouds
     ctx.drawImage(cloudImg, cloud1x, cloud1y); // Cloud 1
-    ctx.drawImage(cloudImg, 170, 100); // Cloud 2
+    ctx.drawImage(cloudImg, cloud2x, cloud2y); // Cloud 2
     
 
     // LOOP
